@@ -1,0 +1,79 @@
+#root {
+    margin-top: 0;
+    top:0px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+
+    --header-height: 48px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow: auto;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+#basic-layout {
+  min-height: 100vh;
+}
+
+.agent-profile-avatar {
+  border-radius: 10px;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.mini-carousel-img {
+  width: 100%;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+  border-radius:7px;
+}
+
+.carousel-container {
+  width: calc(100% - 10px);
+  margin: auto;
+  overflow: visible;
+}
+
+.react-multi-carousel-list {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-item {
+  padding: 0 10px;
+}
+
+.react-multi-carousel-track {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  backface-visibility: hidden;
+}
+
+.carousel-right-arrow {
+  right: -10px;
+  position: absolute;
+}
+
+.carousel-left-arrow {
+  left: -10px  ;
+  position: absolute;
+}
