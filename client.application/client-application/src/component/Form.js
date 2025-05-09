@@ -117,16 +117,27 @@ const getFormField = (field, control, errors) => {
 }
 
 
-
 function Form({ title, fields, submit, entity }) {
-  const { control, handleSubmit, reset, formState: { errors } } = useForm();
+  const defaultValues = {}
+  fields.map((section) => {
+    section.fields.map((field) => {
+      defaultValues[field.name] = field.defaultValue
+    })
+  })
+  const { control, handleSubmit, reset, formState: { errors }, setError } = useForm({
+    defaultValues: defaultValues
+  });
 
   useEffect(() => {
     reset(entity);
   }, [reset, entity]);
 
   const onSubmit = (data) => {
-    submit.action(data);
+    try {
+      submit.action(data)
+    } catch (error) {
+      setError("root", {type: "manual", "message": error.message})
+    }
   }
 
   return (
@@ -140,7 +151,6 @@ function Form({ title, fields, submit, entity }) {
           return (
             <Stack key={section.section} spacing={3} sx={{alignItems: "center"}}>
               {section.section && <Typography variant="h6" component={!!section.size}>{section.section}</Typography>}
-              
               {section.about && <Typography variant="subtitle1">{section.about}</Typography>}
 
               <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
@@ -162,7 +172,9 @@ function Form({ title, fields, submit, entity }) {
             </Stack>
           )
         })}
-
+        {errors.root && 
+          <Typography color="error">{errors.root.message}</Typography>
+        }
         <Button fullWidth onClick={handleSubmit(onSubmit)} variant="contained">{submit.text}</Button>
 
       </Stack>

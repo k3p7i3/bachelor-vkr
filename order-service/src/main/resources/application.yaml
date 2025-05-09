@@ -1,0 +1,10 @@
+server.port: 8091
+spring:
+  data:
+    mongodb:
+      uri: mongodb://order-service:order-service@localhost:27017/order_database?authSource=order_database
+      host: localhost
+      port: 27017
+      database: order_database
+      username: order-service
+      password: order-service

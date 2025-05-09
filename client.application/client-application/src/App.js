@@ -1,13 +1,17 @@
 
-import { Router } from './route/Router';
+import { Router } from './Router';
 import { Provider } from 'react-redux';
 import AppTheme from './AppTheme';
 
+import store from './store';
+
 function App() {
   return (
-      <AppTheme>
-        <Router/>
-      </AppTheme>
+      <Provider store={store}>
+        <AppTheme>
+          <Router/>
+        </AppTheme>
+      </Provider>
   );
 }
 

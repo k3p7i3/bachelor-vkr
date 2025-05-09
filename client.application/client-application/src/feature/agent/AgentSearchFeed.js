@@ -1,61 +1,29 @@
-import { Box, Stack, styled, Typography, Paper, InputBase, IconButton, Pagination } from "@mui/material";
-import SearchIcon from '@mui/icons-material/Search';
+import { Stack, Typography, Pagination } from "@mui/material"; 
+import { useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
+
 import AgentPreviewCard from "./AgentPreviewCard";
-
-import { agentInfo, tariffs } from "./AgentProfile";
-import PageStackContainer from "../../component/ui/PageStackContainer";
-
-const agents = [
-  [agentInfo, tariffs],
-  [agentInfo, tariffs],
-  [agentInfo, tariffs],
-  [agentInfo, tariffs],
-  [agentInfo, tariffs],
-  [agentInfo, tariffs],
-  [agentInfo, tariffs],
-  [agentInfo, tariffs],
-  [agentInfo, tariffs],
-];
-
-
-const CenteredMediumBox = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  alignSelf: 'center',
-  width: '100%',
-  padding: theme.spacing(2),
-  gap: theme.spacing(2),
-  margin: 'auto',
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    maxWidth: '800px',
-  }
-}));
-
-const SearchBar = ({placeholder, onSubmit}) => {
-  return <Paper component="form" sx={{ p: 1, width: 'fit-content', borderRadius: 3 }}>
-    <InputBase placeholder={placeholder}/>
-    <IconButton><SearchIcon/></IconButton>
-  </Paper>
-};
+import CenteredMediumBox from "../../component/ui/CenteredMediumBox";
+import { tariffs } from "./AgentPublicProfile";
+import useAgents from "../../hook/useAgents";
 
 export default function AgentSearchFeed() {
-  return <PageStackContainer spacing={1}>
+  const [searchParams, setSearchParams] = useSearchParams();
+  const nameFilter = searchParams.get('nameFilter');
 
-    <CenteredMediumBox>
-      <SearchBar placeholder="Найти посредника"/>
-    </CenteredMediumBox>
+  const agents = useAgents();
 
+  return <Stack>
     <CenteredMediumBox>
       <Typography variant="h4">Посредники</Typography>
     </CenteredMediumBox>
-    
-    <Stack spacing={4}>
-      {agents.map((agent) => {
-        return <AgentPreviewCard agent={agent[0]} tariffs={agent[1]}/>;
-      })}
-      <Pagination count={10} sx={{ alignSelf: 'center'}}></Pagination>
-    </Stack>
-    
-  </PageStackContainer>
+    {agents &&
+      <Stack spacing={4}>
+        {agents.content.map((agent) => {
+          return <AgentPreviewCard agent={agent} tariffs={tariffs}/>;
+        })}
+        <Pagination count={agents.totalPages} sx={{ alignSelf: 'center'}}></Pagination>
+      </Stack>
+    }
+  </Stack>
 };

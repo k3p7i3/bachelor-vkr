@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cart Extension</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div id="login-section">
+      <h2 class="title">Добро пожаловать!</h2>
+      <p class="description">Пожалуйста, введите код из личного кабинета, чтобы авторизоваться</p>
+      <div class="auth-form">
+        <input type="text" id="userIdInput" placeholder="Введите код">
+        <p id="error-message" class="error">Введите корректный код</p>
+        <button id="loginBtn" class="login-btn">Войти</button>
+      </div>
+    </div>
+    
+    <div id="logout-section" style="display: none;">
+      <h2 class="title">Статус</h2>
+      <div class="status-message">
+        Вы авторизованы с кодом: <br/> <span id="displayUserId" class="user-id"></span>
+      </div>
+      <button id="logoutBtn" class="logout-btn">Выйти</button>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

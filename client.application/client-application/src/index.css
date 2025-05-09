@@ -8,7 +8,7 @@
     padding: 0;
     min-height: 100vh;
 
-    --header-height: 48px;
+    --header-height: 64px;
 }
 
 body {
@@ -76,4 +76,27 @@ body {
 .carousel-left-arrow {
   left: -10px  ;
   position: absolute;
+}
+
+.client-avatar {
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  width: 100%;
+}
+
+.product_cart_image {
+  border-radius: 20px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  width: 175px;
+  /* max-width: 100%; */
+}
+
+.product_edit_image {
+  border-radius: 20px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  width: 100px;
+  max-width: 100%;
 }

@@ -1,0 +1,97 @@
+body {
+  width: 300px;
+  padding: 20px;
+  font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: #f8f9fa;
+  color: #333;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#logout-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 5px 0;
+  color: #2c3e50;
+}
+
+.description {
+  font-size: 14px;
+  color: #7f8c8d;
+  margin-bottom: 10px;
+}
+
+input[type="text"] {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.login-btn {
+  background-color: #3498db;
+  color: white;
+}
+
+.login-btn:hover {
+  background-color: #2980b9;
+}
+
+.logout-btn {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.logout-btn:hover {
+  background-color: #c0392b;
+}
+
+.status-message {
+  padding: 12px;
+  border-radius: 6px;
+  background-color: #ecf0f1;
+  font-size: 14px;
+}
+
+.user-id {
+  font-weight: 600;
+  color: #27ae60;
+}
+
+.error {
+  color: #e74c3c;
+  font-size: 13px;
+  margin-top: 5px;
+  display: none;
+}
