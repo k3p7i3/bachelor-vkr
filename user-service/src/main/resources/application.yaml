@@ -1,0 +1,29 @@
+server.port: 8090
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080
+          jwk-set-uri: http://localhost:8080/oauth2/jwks
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/user_database
+    username: user-service
+    password: user-service
+  liquibase:
+    url: jdbc:postgresql://localhost:5432/user_database
+    user: user-service-liquibase
+    password: user-service-liquibase
+
+logging:
+  level:
+    ru.hse.fcs.user.service: trace
+#    org.springframework.security: trace
+    org.springframework.web: debug

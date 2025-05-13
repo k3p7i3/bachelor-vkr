@@ -1,0 +1,27 @@
+server.port: 8091
+spring:
+  data:
+    mongodb:
+      uri: mongodb://order-service:order-service@localhost:27017/order_database?authSource=order_database
+      host: localhost
+      port: 27017
+      database: order_database
+      username: order-service
+      password: order-service
+
+
+payment.client:
+  credentials:
+    access-key: 1046422
+    secret-key: 
+  url: https://api.yookassa.ru/v3/payments
+  polling:
+    interval: 45s
+    timeout: 45s
+
+
+logging:
+  level:
+    ru.hse.fcs.order.service: trace
+#    org.springframework.security: trace
+    org.springframework.web: debug

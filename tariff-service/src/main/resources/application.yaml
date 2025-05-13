@@ -1,0 +1,14 @@
+server.port: 8093
+spring:
+  data:
+    mongodb:
+      uri: mongodb://tariff-service:tariff-service@localhost:27017/tariff_database?authSource=tariff_database
+      host: localhost
+      port: 27017
+      database: tariff_database
+      username: tariff-service
+      password: tariff-service
+
+logging:
+  level:
+    org.springframework.web: debug

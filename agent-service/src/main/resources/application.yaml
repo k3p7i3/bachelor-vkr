@@ -1,0 +1,49 @@
+server.port: 8094
+spring:
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          issuer-uri: http://localhost:8080
+#          jwk-set-uri: http://localhost:8080/oauth2/jwks
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/agent_database
+    username: agent-service
+    password: agent-service
+  liquibase:
+    url: jdbc:postgresql://localhost:5432/agent_database
+    user: agent-service-liquibase
+    password: agent-service-liquibase
+
+s3:
+  credentials:
+    access-key: 
+    secret-key: 
+  endpoint-url: https://storage.yandexcloud.net
+  region: ru-central1
+  buckets:
+    agent-profile-bucket: agent-service-vkr
+  presigned-url-duration: 60
+  advanced:
+    connection-timeout: 1000000
+    request-timeout: 1000000
+    client-execution-timeout: 1000000
+
+web.client:
+    user.service:
+        url: http://localhost:8090/api/user
+
+recommendations-new-agent-score: 4.4
+
+logging:
+  level:
+    ru.hse.fcs.agent.service: trace
+    org.springframework.web: trace
+#    org.springframework.security: trace

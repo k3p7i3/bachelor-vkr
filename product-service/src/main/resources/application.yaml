@@ -1,0 +1,16 @@
+server.port: 8092
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/product_database
+    username: product-service
+    password: product-service
+  liquibase:
+    url: jdbc:postgresql://localhost:5432/product_database
+    user: product-service-liquibase
+    password: product-service-liquibase
+
+logging:
+  level:
+    ru.hse.fcs.product.service: trace
+    org.springframework.security: trace
+    org.springframework.web: debug

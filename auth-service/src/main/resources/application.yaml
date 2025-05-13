@@ -1,0 +1,54 @@
+spring:
+  security:
+    oauth2:
+      authorizationserver:
+        client:
+          web-client:
+            registration:
+              client-id: "client"
+              client-secret: "$2a$10$wbdb8WpUbkGD/nP8fKOHourCywuk3nNauQuGElsYRnG4duwOklCsK" # secret
+              client-authentication-methods:
+                - "client_secret_basic"
+              authorization-grant-types:
+                - "authorization_code"
+                - "refresh_token"
+              redirect-uris:
+                - "http://localhost:3000/login"
+              post-logout-redirect-uris:
+                - "http://localhost:3000/"
+              scopes:
+                - "read"
+                - "openid"
+            token:
+              access-token-time-to-live: "15m"
+              refresh-token-time-to-live: "3h"
+
+          extension-client:
+            registration:
+              client-id: "extension"
+              client-secret: "$2a$10$/N6ts9xAGfdwN5pCuqNn4ehhLm0Gn4757yr0bphG79duHbRlh53ZK" # ext-secret
+              client-authentication-methods:
+                - "client_secret_basic"
+              authorization-grant-types:
+                - "client_credentials"
+                - "refresh_token"
+              scopes:
+                - "read"
+            token:
+              access-token-time-to-live: "15m"
+              refresh-token-time-to-live: "3h"
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/user_database
+    username: user-service
+    password: user-service
+  liquibase:
+    url: jdbc:postgresql://localhost:5432/user_database
+    user: user-service-liquibase
+    password: user-service-liquibase
+
+logging:
+  level:
+    ru.hse.fcs.user.service: trace
+    org.springframework.security: trace
+    org.springframework.web: debug

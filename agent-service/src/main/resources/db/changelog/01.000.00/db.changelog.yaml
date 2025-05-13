@@ -1,0 +1,24 @@
+---
+databaseChangeLog:
+  - include:
+      relativeToChangeLogFile: true
+      file: agent_profile.sql
+  - include:
+      relativeToChangeLogFile: true
+      file: agent_image.sql
+  - include:
+      relativeToChangeLogFile: true
+      file: agent_rating.sql
+  - include:
+      relativeToChangeLogFile: true
+      file: review.sql
+  - include:
+      relativeToChangeLogFile: true
+      file: selected_agent.sql
+  - changeSet:
+      id: 01.000.00
+      author: pkopyrina
+      logicalFilePath: 01.000.00/db.changelog.yaml
+      changes:
+        - tagDatabase:
+            tag: 01.000.00

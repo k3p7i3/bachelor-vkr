@@ -1,0 +1,116 @@
+---
+version: "3.9"
+services:
+  postgres:
+    image: postgres:13.3
+    container_name: postgres
+    command: ["postgres", "-c", "log_statement=all"]
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data 
+      - ./postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      start_period: 15s
+      timeout: 3s
+      interval: 10s
+      retries: 10
+
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongo
+      MONGO_INITDB_ROOT_PASSWORD: mongo
+    volumes:
+      - mongodb_data:/data/db
+      - ./mongo/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
+    # healthcheck:
+    #   test: echo 'db.runCommand("ping").ok' | mongosh admin --quiet --username admin --password admin
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 5
+
+  auth-service:
+    image: auth-service
+    container_name: auth-service
+    ports:
+      - "8080:8080"
+    links:
+      - postgres
+
+  user-service:
+    image: user-service
+    container_name: user-service
+    environment:
+      AWS_JAVA_V1_DISABLE_DEPRECATION_ANNOUNCEMENT: "true"
+    ports:
+      - "8090:8090"
+    links:
+      - postgres
+
+  agent-service:
+    image: agent-service
+    container_name: agent-service
+    environment:
+      AWS_JAVA_V1_DISABLE_DEPRECATION_ANNOUNCEMENT: "true"
+    ports:
+      - "8094:8094"
+    links:
+      - postgres
+      - user-service
+
+  product-service:
+    image: product-service
+    container_name: product-service
+    environment:
+      AWS_JAVA_V1_DISABLE_DEPRECATION_ANNOUNCEMENT: "true"
+    ports:
+      - "8092:8092"
+    links:
+      - postgres
+
+  tariff-service:
+    image: tariff-service
+    container_name: tariff-service
+    environment:
+      AWS_JAVA_V1_DISABLE_DEPRECATION_ANNOUNCEMENT: "true"
+    ports:
+      - "8093:8093"
+    links:
+      - mongodb
+
+  order-service:
+    image: order-service
+    container_name: order-service
+    environment:
+      AWS_JAVA_V1_DISABLE_DEPRECATION_ANNOUNCEMENT: "true"
+    ports:
+      - "8091:8091"
+    links:
+      - mongodb
+
+  frontend:
+    image: frontend-service
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    links:
+      - auth-service
+      - user-service
+      - agent-service
+      - tariff-service
+      - product-service
+      - order-service
+
+volumes:
+  postgres_data:
+  mongodb_data:
+
