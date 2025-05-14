@@ -1,12 +1,12 @@
 package ru.hse.fcs.agent.service.application
 
-import org.springframework.stereotype.Component
+import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
 import ru.hse.fcs.agent.service.domain.model.AgentImage
 import ru.hse.fcs.agent.service.infrastructure.AgentImageRepository
 import java.util.*
 
-@Component
+@Service
 class AgentImageService(
     private val agentImageRepository: AgentImageRepository
 ) {

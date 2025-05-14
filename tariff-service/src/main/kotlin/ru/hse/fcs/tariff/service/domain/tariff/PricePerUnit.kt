@@ -7,6 +7,8 @@ import ru.hse.fcs.tariff.service.domain.taxable.TaxableParcel
 import ru.hse.fcs.tariff.service.domain.taxable.Cost
 import ru.hse.fcs.tariff.service.domain.taxable.exception.NotEnoughOrderDataException
 import java.math.BigDecimal
+import java.math.MathContext
+import java.math.RoundingMode
 
 data class PricePerUnit(
     val price: Price,
@@ -46,8 +48,16 @@ data class PricePerUnit(
             throw NotEnoughOrderDataException()
         }
 
+
         val cost = Price(
-            value = priceMultiplier * price.value,
+            value = when (unit.type) {
+                Unit.UnitType.PERCENTAGE -> (priceMultiplier * price.value)
+                    .divide(
+                        "100".toBigDecimal(),
+                        MathContext(2, RoundingMode.HALF_EVEN)
+                    )
+                else -> priceMultiplier * price.value
+            },
             unit = price.unit
         )
 

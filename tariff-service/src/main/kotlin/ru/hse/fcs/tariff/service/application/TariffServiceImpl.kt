@@ -12,7 +12,6 @@ class TariffServiceImpl(
 ) : TariffService {
 
     override fun createTariff(tariff: Tariff): Tariff {
-        // TODO - validate tariff??
         val insertedTariff = tariffRepository.insert(tariff)
         return insertedTariff
     }
@@ -48,5 +47,4 @@ class TariffServiceImpl(
                 tariffs = briefTariffs
             )
         }
-
 }

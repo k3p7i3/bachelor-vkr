@@ -36,14 +36,14 @@ class AgentProfileService(
             agentId = agent.id!!,
             score = newAgentRecommendationScore
         )
-        agentRatingRepository.save(agentRating)
+        val rating = agentRatingRepository.save(agentRating)
         agentImageRepository.createDirectoryForAgent(agentId = agent.id!!)
 
         val userData = userClient.registerClient(user.apply { agentId = agent.id!! })
 
         return Agent(
             profile = agent,
-            rating = agentRating
+            rating = rating
         ) to userData
     }
 

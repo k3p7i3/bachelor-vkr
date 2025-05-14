@@ -1,13 +1,13 @@
 package ru.hse.fcs.agent.service.application
 
-import org.springframework.stereotype.Component
+import org.springframework.stereotype.Service
 import ru.hse.fcs.agent.service.domain.model.AgentBriefInfo
 import ru.hse.fcs.agent.service.domain.model.AgentSelection
 import ru.hse.fcs.agent.service.domain.repository.AgentProfileRepository
 import ru.hse.fcs.agent.service.domain.repository.AgentSelectionRepository
 import java.util.*
 
-@Component
+@Service
 class AgentSelectionService(
     private val agentProfileService: AgentProfileService,
     private val agentProfileRepository: AgentProfileRepository,
@@ -21,7 +21,7 @@ class AgentSelectionService(
         }
 
         val foundSelection = agentSelectionRepository.findByUserId(
-            agentSelection.agentId
+            agentSelection.userId
         )
         val resultSelection = if (foundSelection.isEmpty) {
             agentSelectionRepository.save(agentSelection)

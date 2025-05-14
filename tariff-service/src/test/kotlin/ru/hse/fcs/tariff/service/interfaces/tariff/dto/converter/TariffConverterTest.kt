@@ -2,10 +2,6 @@ package ru.hse.fcs.tariff.service.interfaces.tariff.dto.converter
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertInstanceOf
-import org.mockito.Mockito.mock
-import org.mockito.kotlin.any
-import org.mockito.kotlin.eq
-import org.mockito.kotlin.whenever
 import ru.hse.fcs.tariff.service.domain.measure.Price
 import ru.hse.fcs.tariff.service.domain.measure.unit.*
 import ru.hse.fcs.tariff.service.domain.tariff.*
@@ -14,7 +10,7 @@ import java.math.BigDecimal
 import java.util.UUID
 import kotlin.test.assertEquals
 
-internal class ConverterTest {
+internal class TariffConverterTest {
 
     @Test
     fun testConvertToDto() {

@@ -7,7 +7,7 @@ import org.springframework.data.relational.core.mapping.Table
 import java.util.UUID
 
 @Table("agent_profile")
-class AgentProfile(
+data class AgentProfile(
     @Id
     @Column("id")
     private var id: UUID? = null,

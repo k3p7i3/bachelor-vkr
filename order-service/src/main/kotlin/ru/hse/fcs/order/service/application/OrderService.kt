@@ -1,13 +1,13 @@
 package ru.hse.fcs.order.service.application
 
-import org.springframework.stereotype.Component
+import org.springframework.stereotype.Service
 import ru.hse.fcs.order.service.domain.model.Order
 import ru.hse.fcs.order.service.domain.model.OrderPayment
 import ru.hse.fcs.order.service.domain.repository.MongoOrderRepository
 import ru.hse.fcs.order.service.infrastructure.PaymentClient
 import java.util.UUID
 
-@Component
+@Service
 class OrderService(
     private val orderRepository: MongoOrderRepository,
     private val paymentPollingService: PaymentPollingService,

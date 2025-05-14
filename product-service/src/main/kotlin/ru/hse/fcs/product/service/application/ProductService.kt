@@ -150,7 +150,6 @@ class ProductService(
     }
 
     fun deleteProductFromFavorites(favoriteId: UUID) {
-        // TODO delete product too
         favoriteProductRepository.deleteById(favoriteId)
     }
 

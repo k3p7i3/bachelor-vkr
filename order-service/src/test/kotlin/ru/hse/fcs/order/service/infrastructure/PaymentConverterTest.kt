@@ -1,15 +1,13 @@
-package ru.hse.fcs.order.service
+package ru.hse.fcs.order.service.infrastructure
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.junit.jupiter.api.Test
 import ru.hse.fcs.order.service.domain.model.OrderPayment
 import ru.hse.fcs.order.service.domain.model.measurement.Price
-import ru.hse.fcs.order.service.infrastructure.Payment
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
-class ConverterTest {
+class PaymentConverterTest {
 
     @Test
     fun convertPayment() {
